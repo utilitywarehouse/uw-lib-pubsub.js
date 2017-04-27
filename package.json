@@ -1,0 +1,24 @@
+{
+  "name": "uw-pub-sub.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:utilitywarehouse/uw-pub-sub.js.git",
+  "author": "Oliver Johnstone <ojohnstone@utilitywarehouse.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -r tests/.bootstrap.js --recursive 'tests/**/*.spec.js'"
+  },
+  "dependencies": {
+    "@utilitywarehouse/uw-lib-error.js": "^1.0.1",
+    "no-kafka": "^3.1.4",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.3.0",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.3",
+    "sinon-chai": "^2.9.0"
+  }
+}
