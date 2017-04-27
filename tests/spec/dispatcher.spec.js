@@ -9,8 +9,8 @@ describe('EventDispatcher', () => {
   });
 
   it('can have listener added', () => {
-    eventDispatcher.addCustomListener(eventName, () => {});
-    eventDispatcher.getListeners(eventName).length.should.equal(1);
+    eventDispatcher.addCustomListener(() => {});
+    eventDispatcher.getListeners().length.should.equal(1);
   });
 
   describe('.dispatch', () => {
@@ -24,19 +24,19 @@ describe('EventDispatcher', () => {
         });
       };
 
-      eventDispatcher.addCustomListener(eventName, listener);
+      eventDispatcher.addCustomListener(listener);
 
-      return eventDispatcher.dispatch(eventName, {})
+      return eventDispatcher.dispatch({})
         .then(() => {
           called.should.equal(true);
-        })
+        });
     });
 
     it('rejects if any promise return by a listener rejects', () => {
       const listener = () => Promise.reject();
-      eventDispatcher.addCustomListener(eventName, listener);
+      eventDispatcher.addCustomListener(listener);
 
-      return eventDispatcher.dispatch(eventName, {}).should.be.rejected;
+      return eventDispatcher.dispatch({}).should.be.rejected;
     });
   });
 });

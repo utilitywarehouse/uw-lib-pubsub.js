@@ -1,24 +1,18 @@
 class EventDispatcher {
   constructor() {
-    this.listeners = new Map();
+    this.listeners = [];
   }
 
-  addCustomListener(eventName, listener) {
-    const listeners = this.getListeners(eventName);
-    listeners.push(listener);
-    this.listeners.set(eventName, listeners);
+  addCustomListener(listener) {
+    this.listeners.push(listener);
   }
 
-  dispatch(eventName, event) {
-    const listeners = this.getListeners(eventName);
-
-    return Promise.all(
-      listeners.map(listener => listener.call(null, event))
-    );
+  dispatch(event) {
+    return Promise.all(this.getListeners().map(listener => listener.call(null, event)));
   }
 
-  getListeners(eventName) {
-    return this.listeners.get(eventName) || [];
+  getListeners() {
+    return this.listeners;
   }
 }
 

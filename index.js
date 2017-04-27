@@ -6,26 +6,23 @@ const Kafka = require('no-kafka');
 
 class Dispatcher extends EventDispatcher {
 
-  constructor(brokers, logger, events) {
+  constructor(brokers, logger) {
     super();
     this.brokers = brokers;
     this.logger = logger;
-    this.events = events || [];
   }
 
   init() {
     const producer = new Kafka.Producer({ connectionString: this.brokers });
     return producer.init().then(() => {
       const queue = new Queue(producer);
-      this.relay = QueueRelay(queue);
-      this.logger = Logger(this.logger);
-      this.events.forEach(e => this.addListener(e));
+      this.addListeners(QueueRelay(queue), Logger(this.logger));
     });
   }
 
-  addListener(eventName) {
-    this.addCustomListener(eventName, this.relay);
-    this.addCustomListener(eventName, this.logger);
+  addListeners(relay, logger) {
+    this.addCustomListener(relay);
+    this.addCustomListener(logger);
   }
 }
 
