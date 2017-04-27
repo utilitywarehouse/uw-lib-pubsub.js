@@ -1,7 +1,6 @@
 const EventDispatcher = require('../../src/dispatcher');
 
 describe('EventDispatcher', () => {
-  const eventName = 'event-name';
   let eventDispatcher;
 
   beforeEach(() => {
