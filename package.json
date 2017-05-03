@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@utilitywarehouse/uw-lib-error.js": "^1.0.1",
-    "no-kafka": "^3.1.4",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
