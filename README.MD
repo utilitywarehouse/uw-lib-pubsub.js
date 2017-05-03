@@ -1,8 +1,16 @@
 # UW Pub Sub
 
+Node Version:
+
+`>= v7.9.0`
+
 Usage:
 
 `yarn add git+ssh://git@github.com/utilitywarehouse/uw-lib-pubsub.js`
+
+Testing:
+
+`npm test`
 
 wiring.yml:
 

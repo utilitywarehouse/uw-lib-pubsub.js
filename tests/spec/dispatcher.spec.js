@@ -7,13 +7,13 @@ describe('EventDispatcher', () => {
     eventDispatcher = new EventDispatcher();
   });
 
-  it('can have listener added', () => {
+  test('can have listener added', () => {
     eventDispatcher.addCustomListener(() => {});
-    eventDispatcher.getListeners().length.should.equal(1);
+    expect(eventDispatcher.getListeners().length).toEqual(1);
   });
 
   describe('.dispatch', () => {
-    it('resolve if all promises returned by the listeners are resolved', () => {
+    test('resolves if all promises returned by the listeners are resolved', () => {
       let called = false;
 
       const listener = () => {
@@ -25,17 +25,15 @@ describe('EventDispatcher', () => {
 
       eventDispatcher.addCustomListener(listener);
 
-      return eventDispatcher.dispatch({})
-        .then(() => {
-          called.should.equal(true);
-        });
+      return eventDispatcher.dispatch({}).then(() => expect(called).toBe(true));
     });
 
-    it('rejects if any promise return by a listener rejects', () => {
-      const listener = () => Promise.reject();
+    test('rejects if any promises return by a listener rejects', () => {
+      const error = new Error();
+      expect.assertions(1);
+      const listener = () => Promise.reject(error);
       eventDispatcher.addCustomListener(listener);
-
-      return eventDispatcher.dispatch({}).should.be.rejected;
+      return eventDispatcher.dispatch({}).catch(e => expect(e).toEqual(error));
     });
   });
 });
