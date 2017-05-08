@@ -19,7 +19,7 @@ kafka.producer:
     class: 'no-kafka::Producer'
     with:
       -
-        connectionString: '@kafka.brokers'
+        connectionString: '127.0.0.1:9092,192.168.2.2:9092'
     tags:
       system.start: { method: init }
 
