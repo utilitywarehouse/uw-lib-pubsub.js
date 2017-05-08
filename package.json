@@ -2,7 +2,7 @@
   "name": "@utilitywarehouse/uw-lib-pub-sub.js",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:utilitywarehouse/uw-pub-sub.js.git",
+  "repository": "git@github.com:utilitywarehouse/uw-lib-pubsub.js",
   "author": "Oliver Johnstone <ojohnstone@utilitywarehouse.co.uk>",
   "license": "MIT",
   "scripts": {
