@@ -1,19 +1,33 @@
 # UW Pub Sub
 
+Node Version:
+
+`>= v7.9.0`
+
 Usage:
 
-`yarn add git+ssh://git@github.com/utilitywarehouse/uw-lib-pubsub.js`
+`yarn add git+ssh://git@github.com/utilitywarehouse/uw-lib-pubsub.js no-kafka`
+
+Testing:
+
+`npm test`
 
 wiring.yml:
 
 ```
+kafka.producer:
+    class: 'no-kafka::Producer'
+    with:
+      -
+        connectionString: '127.0.0.1:9092,192.168.2.2:9092'
+    tags:
+      system.start: { method: init }
+
 event.dispatcher:
     class: 'uw-pub-sub.js::Dispatcher'
     with:
-      - '@kafka.brokers'
+      - '@kafka.producer'
       - '@logger'
-    tags:
-      system.start: { method: init }
 ```
 
 MySpecialEvent.js
@@ -30,4 +44,3 @@ class MySpecialEvent {
 }
 
 ```
-
