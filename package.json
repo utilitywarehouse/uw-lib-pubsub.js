@@ -8,6 +8,9 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha -r tests/.bootstrap.js --recursive 'tests/**/*.spec.js'"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@utilitywarehouse/uw-lib-error.js": "^1.0.1",
     "no-kafka": "^3.1.4",
